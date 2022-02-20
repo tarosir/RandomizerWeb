@@ -49,67 +49,67 @@ public class Random {
         List<Student> listThirdCommandCheck = new ArrayList<>(listThirdCommand);
         int maxSizeCommand;
         int minSizeCommand;
-        if(listFirstCommand.size()>=listSecondCommand.size()&&listFirstCommand.size()>=listThirdCommand.size()){
+        if (listFirstCommand.size() >= listSecondCommand.size() && listFirstCommand.size() >= listThirdCommand.size()) {
             maxSizeCommand = listFirstCommand.size();
             minSizeCommand = Math.min(listSecondCommand.size(), listThirdCommand.size());
-        }else{
+        } else {
             maxSizeCommand = Math.max(listSecondCommand.size(), listThirdCommand.size());
-            if(listFirstCommand.size()<listSecondCommand.size()){
-                minSizeCommand =  Math.min(listFirstCommand.size(), listThirdCommand.size());
-            }else
+            if (listFirstCommand.size() < listSecondCommand.size()) {
+                minSizeCommand = Math.min(listFirstCommand.size(), listThirdCommand.size());
+            } else
                 minSizeCommand = listSecondCommand.size();
         }
 
-        int countLoopMax = (int) Math.ceil((double) maxSizeCommand/2);
-        int countLoopMin = (int) Math.ceil((double) minSizeCommand/2);
+        int countLoopMax = (int) Math.ceil((double) maxSizeCommand / 2);
+        int countLoopMin = (int) Math.ceil((double) minSizeCommand / 2);
 
         for (int i = 0; i < countLoopMax; i++) {
-            if(i < countLoopMin){
-                listStudentOut.add(listFirstCommand.get(i*2));
-                listFirstCommandCheck.remove(listFirstCommand.get(i*2));
-                System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+            if (i < countLoopMin) {
+                listStudentOut.add(listFirstCommand.get(i * 2));
+                listFirstCommandCheck.remove(listFirstCommand.get(i * 2));
+                System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
 
-                listStudentOut.add(listSecondCommand.get(i*2));
-                listSecondCommandCheck.remove(listSecondCommand.get(i*2));
-                System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+                listStudentOut.add(listSecondCommand.get(i * 2));
+                listSecondCommandCheck.remove(listSecondCommand.get(i * 2));
+                System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
                 System.out.println("++++++++++++++++++++++++++++");
 
-                listStudentOut.add(listThirdCommand.get(i*2));
-                listThirdCommandCheck.remove(listThirdCommand.get(i*2));
-                System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+                listStudentOut.add(listThirdCommand.get(i * 2));
+                listThirdCommandCheck.remove(listThirdCommand.get(i * 2));
+                System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
 
-                listStudentOut.add(listSecondCommand.get(i*2+1));
-                listSecondCommandCheck.remove(listSecondCommand.get(i*2+1));
-                System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+                listStudentOut.add(listSecondCommand.get(i * 2 + 1));
+                listSecondCommandCheck.remove(listSecondCommand.get(i * 2 + 1));
+                System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
                 System.out.println("++++++++++++++++++++++++++++");
 
-                listStudentOut.add(listFirstCommand.get(i*2+1));
-                listFirstCommandCheck.remove(listFirstCommand.get(i*2+1));
-                System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+                listStudentOut.add(listFirstCommand.get(i * 2 + 1));
+                listFirstCommandCheck.remove(listFirstCommand.get(i * 2 + 1));
+                System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
 
-                listStudentOut.add(listThirdCommand.get(i*2+1));
-                listThirdCommandCheck.remove(listThirdCommand.get(i*2+1));
-                System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+                listStudentOut.add(listThirdCommand.get(i * 2 + 1));
+                listThirdCommandCheck.remove(listThirdCommand.get(i * 2 + 1));
+                System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
                 System.out.println("++++++++++++++++++++++++++++");
-            }else{
-                int left = listFirstCommandCheck.size()+
-                        listSecondCommandCheck.size()+
-                        listThirdCommandCheck.size();
-                if(left<2){
-                    if(!listFirstCommandCheck.isEmpty()){
-                        listStudentOut.add(listFirstCommandCheck.get(listFirstCommandCheck.size()-1));
-                        listFirstCommandCheck.remove(listFirstCommandCheck.size()-1);
-                        System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+            } else {
+                while (listFirstCommandCheck.size() +
+                        listSecondCommandCheck.size() +
+                        listThirdCommandCheck.size() != 0) {
+
+                    if (!listFirstCommandCheck.isEmpty()) {
+                        listStudentOut.add(listFirstCommandCheck.get(listFirstCommandCheck.size() - 1));
+                        listFirstCommandCheck.remove(listFirstCommandCheck.size() - 1);
+                        System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
                     }
-                    if(!listSecondCommandCheck.isEmpty()){
-                        listStudentOut.add(listSecondCommandCheck.get(listSecondCommandCheck.size()-1));
-                        listSecondCommandCheck.remove(listSecondCommandCheck.size()-1);
-                        System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+                    if (!listSecondCommandCheck.isEmpty()) {
+                        listStudentOut.add(listSecondCommandCheck.get(listSecondCommandCheck.size() - 1));
+                        listSecondCommandCheck.remove(listSecondCommandCheck.size() - 1);
+                        System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
                     }
-                    if(!listThirdCommandCheck.isEmpty()){
-                        listStudentOut.add(listThirdCommandCheck.get(listThirdCommandCheck.size()-1));
-                        listThirdCommandCheck.remove(listThirdCommandCheck.size()-1);
-                        System.out.println(listStudentOut.get(listStudentOut.size()-1).toString());
+                    if (!listThirdCommandCheck.isEmpty()) {
+                        listStudentOut.add(listThirdCommandCheck.get(listThirdCommandCheck.size() - 1));
+                        listThirdCommandCheck.remove(listThirdCommandCheck.size() - 1);
+                        System.out.println(listStudentOut.get(listStudentOut.size() - 1).toString());
                     }
                 }
             }
@@ -117,8 +117,7 @@ public class Random {
         for (int i = 0; i < listStudentOut.size(); i++) {
             listStudentOut.get(i).setId(i);
         }
-
-        json=gson.toJson(listStudentOut);
+        json = gson.toJson(listStudentOut);
 
         return json;
     }
