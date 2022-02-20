@@ -129,12 +129,11 @@ public class RandomStudentVsStudentController {
             randomize();
             i--;
         }
-        if (listStudentQuestion.size() < 2) {
-            listStudentOut.add(new Student(id,listStudentQuestion.get(0).getLastname(),listStudentQuestion.get(0).getName(),listStudentQuestion.get(0).getTeam()));
-            System.out.println("No more student pairs from different teams left " + listStudentQuestion.get(0).getName() + " " + listStudentQuestion.get(0).getLastname());
-        }
+      if (listStudentQuestion.size() > 2) {
+        randomAll();
+            }
         for (int j = 0; j <listStudentQuestion.size(); j++) {
-            listStudentOut.add(new Student(id,listStudentQuestion.get(i).getLastname(),listStudentQuestion.get(i).getName(),listStudentQuestion.get(i).getTeam()));
+            listStudentOut.add(new Student(id,listStudentQuestion.get(j).getLastname(),listStudentQuestion.get(j).getName(),listStudentQuestion.get(j).getTeam()));
        id++;
         }
    json=gson.toJson(listStudentOut);
