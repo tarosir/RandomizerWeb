@@ -61,16 +61,10 @@ public class RandomStudentVsStudentController {
 
     private void randomize() {
         updateLists();
-        boolean flag = false;
 
-        for (int i=0;i<listStudentQuestion.size()-1;i++) {
-           if (listStudentQuestion.get(i).getTeam().equals(listStudentQuestion.get(i+1).getTeam())){
-               flag=true;
-           }
-           else flag=false;
 
-        }
-        if ((listStudentQuestion.size() < 2)||(flag)) {
+
+        if ((listStudentQuestion.size() < 2)) {
 
             System.out.println("No more student pairs left" + listStudentQuestion.get(0).getName() + " " + listStudentQuestion.get(0).getLastname());
 
@@ -130,6 +124,8 @@ public class RandomStudentVsStudentController {
             i--;
         }
       if (listStudentQuestion.size() > 2) {
+          json="";
+          id=0;
         randomAll();
             }
         for (int j = 0; j <listStudentQuestion.size(); j++) {
