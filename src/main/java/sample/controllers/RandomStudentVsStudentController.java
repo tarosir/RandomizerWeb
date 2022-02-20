@@ -84,6 +84,15 @@ public class RandomStudentVsStudentController {
 
         studentAnswer = listStudentQuestion.get((int) (Math.random() * listStudentQuestion.size()));
 
+        boolean flag = false;
+        for (int j = 0; j <listStudentQuestion.size()-1; j++) {
+            if (listStudentQuestion.get(j).getTeam().equals(listStudentQuestion.get(j+1).getTeam())){
+                flag=true;
+            } else flag=false;
+
+        }
+     if(!flag){
+
         if ((!studentAnswer.getTeam().equals(studentQuestion.getTeam()))) {
             studentAnswer.setQuestion("done");
             listStudentOut.add(new Student(id,studentAnswer.getLastname(),studentAnswer.getName(),studentAnswer.getTeam()));
@@ -92,7 +101,7 @@ public class RandomStudentVsStudentController {
             System.out.println("=============================================================");
             updateLists();
 
-        } else randomSecond();
+        } else randomSecond();}
     }
 
     public String randomAll() {
@@ -119,9 +128,19 @@ public class RandomStudentVsStudentController {
 
 
         int i = listStudent.size() / 2;
+
         while (i != 0) {
             randomize();
             i--;
+            boolean flag = false;
+            for (int j = 0; j <listStudentQuestion.size()-1; j++) {
+               if (listStudentQuestion.get(j).getTeam().equals(listStudentQuestion.get(j+1).getTeam())){
+                   flag=true;
+               } else flag=false;
+
+            }
+
+
         }
       if (listStudentQuestion.size() > 2) {
           json="";
