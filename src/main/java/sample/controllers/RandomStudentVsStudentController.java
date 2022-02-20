@@ -61,7 +61,17 @@ public class RandomStudentVsStudentController {
 
     private void randomize() {
         updateLists();
-        if (listStudentQuestion.size() < 2) {
+        boolean flag = false;
+
+        for (int i=0;i<listStudentQuestion.size()-1;i++) {
+           if (listStudentQuestion.get(i).getTeam().equals(listStudentQuestion.get(i+1).getTeam())){
+               flag=true;
+           }
+           else flag=false;
+
+        }
+        if ((listStudentQuestion.size() < 2)||(flag)) {
+
             System.out.println("No more student pairs left" + listStudentQuestion.get(0).getName() + " " + listStudentQuestion.get(0).getLastname());
 
         } else {
@@ -121,7 +131,7 @@ public class RandomStudentVsStudentController {
         }
         if (listStudentQuestion.size() < 2) {
             listStudentOut.add(new Student(id,listStudentQuestion.get(0).getLastname(),listStudentQuestion.get(0).getName(),listStudentQuestion.get(0).getTeam()));
-            System.out.println("No more student pairs left " + listStudentQuestion.get(0).getName() + " " + listStudentQuestion.get(0).getLastname());
+            System.out.println("No more student pairs from different teams left " + listStudentQuestion.get(0).getName() + " " + listStudentQuestion.get(0).getLastname());
         }
    json=gson.toJson(listStudentOut);
 
