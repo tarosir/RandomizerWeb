@@ -132,14 +132,6 @@ public class RandomStudentVsStudentController {
         while (i != 0) {
             randomize();
             i--;
-            boolean flag = false;
-            for (int j = 0; j <listStudentQuestion.size()-1; j++) {
-               if (listStudentQuestion.get(j).getTeam().equals(listStudentQuestion.get(j+1).getTeam())){
-                   flag=true;
-               } else flag=false;
-
-            }
-
 
         }
       if (listStudentQuestion.size() > 2) {
