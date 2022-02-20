@@ -127,7 +127,7 @@ public class RandomStudentVsStudentController {
 
         System.out.println(json);
 
-
+        id=0;
         //        DataBaseHandler.clearMarks();
         return json;
     }
