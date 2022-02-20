@@ -28,6 +28,10 @@ public class Student {
         return Objects.equals(team, student.team);
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
         int result = id;
@@ -75,9 +79,15 @@ public class Student {
         this.question = question;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", team='" + team + '\'' +
+                '}';
+    }
 
     public String getTeam() {
         return team;
