@@ -27,6 +27,8 @@ public class RandomStudentVsStudentController {
     Student studentQuestion;
     Student studentAnswer;
 
+    public  static int id=0;
+
 
 
 //    void initialize() {
@@ -65,8 +67,9 @@ public class RandomStudentVsStudentController {
         } else {
             studentQuestion = listStudentQuestion.get((int) (Math.random() * listStudentQuestion.size()));
             studentQuestion.setQuestion("done");
-            listStudentOut.add(new Student(studentQuestion.getId(),studentQuestion.getLastname(),studentQuestion.getName(),studentQuestion.getTeam()));
+            listStudentOut.add(new Student(id,studentQuestion.getLastname(),studentQuestion.getName(),studentQuestion.getTeam()));
             System.out.println(studentQuestion.getLastname() + " " + studentQuestion.getName() + " " + studentQuestion.getTeam());
+            id++;
             updateLists();
 
             randomSecond();
@@ -79,8 +82,9 @@ public class RandomStudentVsStudentController {
 
         if ((!studentAnswer.getTeam().equals(studentQuestion.getTeam()))) {
             studentAnswer.setQuestion("done");
-            listStudentOut.add(new Student(studentAnswer.getId(),studentAnswer.getLastname(),studentAnswer.getName(),studentAnswer.getTeam()));
+            listStudentOut.add(new Student(id,studentAnswer.getLastname(),studentAnswer.getName(),studentAnswer.getTeam()));
             System.out.println(studentAnswer.getLastname() + " " + studentAnswer.getName() + " " + studentAnswer.getTeam());
+            id++;
             System.out.println("=============================================================");
             updateLists();
 
@@ -116,7 +120,7 @@ public class RandomStudentVsStudentController {
             i--;
         }
         if (listStudentQuestion.size() < 2) {
-            listStudentOut.add(new Student(listStudentQuestion.get(0).getId(),listStudentQuestion.get(0).getLastname(),listStudentQuestion.get(0).getName(),listStudentQuestion.get(0).getTeam()));
+            listStudentOut.add(new Student(id,listStudentQuestion.get(0).getLastname(),listStudentQuestion.get(0).getName(),listStudentQuestion.get(0).getTeam()));
             System.out.println("No more student pairs left " + listStudentQuestion.get(0).getName() + " " + listStudentQuestion.get(0).getLastname());
         }
    json=gson.toJson(listStudentOut);
