@@ -84,4 +84,11 @@ public class Student {
     }
 
     public void setTeam(String team) {this.team = team;}
+
+    public Student(int id,String name, String lastname, String team) {
+        this.id =id;
+        this.name = name;
+        this.lastname = lastname;
+        this.team = team;
+    }
 }

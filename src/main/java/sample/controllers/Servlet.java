@@ -1,5 +1,8 @@
 package sample.controllers;
 
+
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +11,24 @@ import java.io.IOException;
 
 public class Servlet extends HttpServlet {
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RandomStudentVsStudentController randomStudentVsStudentController = new RandomStudentVsStudentController();
-        randomStudentVsStudentController.randomAll();
+      String json=  randomStudentVsStudentController.randomAll();
+        req.setAttribute("jsonData",json);
+
+        forward("json-page.jsp", req,resp);
 
 
     }
+    private void forward(String url, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+
+
+
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher(url);
+        requestDispatcher.forward(httpServletRequest, httpServletResponse);
+    }
+
+
 }

@@ -1,13 +1,15 @@
 package sample.controllers;
 
 
-
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import sample.DataBase.DataBaseHandler;
 
 import sample.Exceptions.RandomException;
 import sample.Student;
 
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +18,15 @@ import java.util.stream.Collectors;
 public class RandomStudentVsStudentController {
 
 
-
-
-
-
     List<Student> listStudent = new ArrayList<>();
     List<Student> listStudentQuestion = new ArrayList<>();
+    List<Student> listStudentOut = new ArrayList<>();
+    Gson gson = new Gson();
+    String json = "";
 
     Student studentQuestion;
     Student studentAnswer;
+
 
 
 //    void initialize() {
@@ -58,13 +60,15 @@ public class RandomStudentVsStudentController {
     private void randomize() {
         updateLists();
         if (listStudentQuestion.size() < 2) {
-            System.out.println("No more student pairs left"+listStudentQuestion.get(0).getName()+" "+listStudentQuestion.get(0).getLastname());
+            System.out.println("No more student pairs left" + listStudentQuestion.get(0).getName() + " " + listStudentQuestion.get(0).getLastname());
 
         } else {
             studentQuestion = listStudentQuestion.get((int) (Math.random() * listStudentQuestion.size()));
             studentQuestion.setQuestion("done");
-            System.out.println(studentQuestion.getLastname() + " " + studentQuestion.getName()+ " " + studentQuestion.getTeam());
+            listStudentOut.add(new Student(studentQuestion.getId(),studentQuestion.getLastname(),studentQuestion.getName(),studentQuestion.getTeam()));
+            System.out.println(studentQuestion.getLastname() + " " + studentQuestion.getName() + " " + studentQuestion.getTeam());
             updateLists();
+
             randomSecond();
         }
     }
@@ -75,33 +79,35 @@ public class RandomStudentVsStudentController {
 
         if ((!studentAnswer.getTeam().equals(studentQuestion.getTeam()))) {
             studentAnswer.setQuestion("done");
-            System.out.println(studentAnswer.getLastname() + " " + studentAnswer.getName()+ " " + studentAnswer.getTeam());
+            listStudentOut.add(new Student(studentAnswer.getId(),studentAnswer.getLastname(),studentAnswer.getName(),studentAnswer.getTeam()));
+            System.out.println(studentAnswer.getLastname() + " " + studentAnswer.getName() + " " + studentAnswer.getTeam());
             System.out.println("=============================================================");
             updateLists();
+
         } else randomSecond();
     }
 
-    public void randomAll()  {
+    public String randomAll() {
 //        listStudent.addAll(DataBaseHandler.getAllStudentsFromDB());
-        listStudent.add(0,new Student(1,"Akulov","Oleg","yellow","x"));
-        listStudent.add(1,new Student(2,"Ananev","Maxim","yellow","x"));
-        listStudent.add(2,new Student(3,"Bakulin","Alexey","yellow","x"));
-        listStudent.add(3,new Student(4,"Barisheva","Evgeniya","blue","x"));
-        listStudent.add(4,new Student(5,"Gricenko","Nikolay","blue","x"));
-        listStudent.add(5,new Student(6,"Detsky","Yaroslav","yellow","x"));
-        listStudent.add(6,new Student(7,"Dumava","Oleg","blue","x"));
-        listStudent.add(7,new Student(8,"Zanko","Anna","red","x"));
-        listStudent.add(8,new Student(9,"Korotkov","Alexander","blue","x"));
-        listStudent.add(9,new Student(10,"Kochubei","Pavel","blue","x"));
-        listStudent.add(10,new Student(11,"Maxut","Rauan","red","x"));
-        listStudent.add(11,new Student(12,"Moroz","Alexander","red","x"));
-        listStudent.add(12,new Student(13,"Peretyagin","Sergei","red","x"));
-        listStudent.add(13,new Student(14,"Ponomaryov","Sergei","blue","x"));
-        listStudent.add(14,new Student(15,"Sazhin","Victor","red","x"));
-        listStudent.add(15,new Student(16,"Fedorenko","Stanislav","yellow","x"));
-        listStudent.add(16,new Student(17,"Shokel","Nadejda","yellow","x"));
-        listStudent.add(17,new Student(18,"Sholkov","Vasiliy","red","x"));
-        listStudent.add(18,new Student(19,"Yaminov","Damir","blue","x"));
+        listStudent.add(0, new Student(1, "Akulov", "Oleg", "yellow", "x"));
+        listStudent.add(1, new Student(2, "Ananev", "Maxim", "yellow", "x"));
+        listStudent.add(2, new Student(3, "Bakulin", "Alexey", "yellow", "x"));
+        listStudent.add(3, new Student(4, "Barisheva", "Evgeniya", "blue", "x"));
+        listStudent.add(4, new Student(5, "Gricenko", "Nikolay", "blue", "x"));
+        listStudent.add(5, new Student(6, "Detsky", "Yaroslav", "yellow", "x"));
+        listStudent.add(6, new Student(7, "Dumava", "Oleg", "blue", "x"));
+        listStudent.add(7, new Student(8, "Zanko", "Anna", "red", "x"));
+        listStudent.add(8, new Student(9, "Korotkov", "Alexander", "blue", "x"));
+        listStudent.add(9, new Student(10, "Kochubei", "Pavel", "blue", "x"));
+        listStudent.add(10, new Student(11, "Maxut", "Rauan", "red", "x"));
+        listStudent.add(11, new Student(12, "Moroz", "Alexander", "red", "x"));
+        listStudent.add(12, new Student(13, "Peretyagin", "Sergei", "red", "x"));
+        listStudent.add(13, new Student(14, "Ponomaryov", "Sergei", "blue", "x"));
+        listStudent.add(14, new Student(15, "Sazhin", "Victor", "red", "x"));
+        listStudent.add(15, new Student(16, "Fedorenko", "Stanislav", "yellow", "x"));
+        listStudent.add(16, new Student(17, "Shokel", "Nadejda", "yellow", "x"));
+        listStudent.add(17, new Student(18, "Sholkov", "Vasiliy", "red", "x"));
+        listStudent.add(18, new Student(19, "Yaminov", "Damir", "blue", "x"));
 
 
         int i = listStudent.size() / 2;
@@ -110,8 +116,16 @@ public class RandomStudentVsStudentController {
             i--;
         }
         if (listStudentQuestion.size() < 2) {
-            System.out.println("No more student pairs left "+listStudentQuestion.get(0).getName()+" "+listStudentQuestion.get(0).getLastname());}
-//        DataBaseHandler.clearMarks();
+            listStudentOut.add(new Student(listStudentQuestion.get(0).getId(),listStudentQuestion.get(0).getLastname(),listStudentQuestion.get(0).getName(),listStudentQuestion.get(0).getTeam()));
+            System.out.println("No more student pairs left " + listStudentQuestion.get(0).getName() + " " + listStudentQuestion.get(0).getLastname());
+        }
+   json=gson.toJson(listStudentOut);
+
+        System.out.println(json);
+
+
+        //        DataBaseHandler.clearMarks();
+        return json;
     }
 
 
